@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; text-align: center; padding: 50px; }
+        .container { max-width: 600px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        textarea { width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 18px; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .result { margin-top: 20px; font-size: 22px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📰 Fake News Detector</h2>
+        <p>Paste the news item you want to check below.</p>
+        <form action="/predict" method="POST">
+            <textarea name="news" rows="6" required>{{ original_text }}</textarea><br>
+            <button type="submit">Check News</button>
+        </form>
+        {% if prediction_text %}
+            <div class="result" style="color: {{ result_color }};">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
